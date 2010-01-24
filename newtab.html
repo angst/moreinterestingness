@@ -1,6 +1,8 @@
 <html>
 <head> 
 <title>Interestingness</title> 
+<link rel="stylesheet" href="style.css" type="text/css" />
+
 <script>
  
 var current_idx;
@@ -45,62 +47,11 @@ window.onload = init;
  
  
 </script> 
-<style>
-* {
-    margin: 0;
-    padding: 0;
-}
 
-html, body, #bg, #bg table, #bg td {
-    height:100%;
-    width:100%;
-    overflow:hidden;
-    background: #000;
-}
-
-#bg {
-    position: fixed;
-}
-
-#bg div {
-    height:200%;
-    left:-50%;
-    position:absolute;
-    top:-50%;
-    width:200%;
-}
-
-#bg td {
-    text-align:center;
-    vertical-align:middle;
-}
-
-#bg img {
-    margin:0 auto;
-    min-height:50%;
-    min-width:50%;
-}
-#info {
-  background: rgba(0,0,0,0.5);
-  bottom: 50px;
-  color: #fff;
-  width: 100%;
-  font-size: 24px;
-  padding: 1em;
-  position: fixed;
-  text-decoration: none;
-}
-</style> 
 </head> 
 <body> 
   <div id="bg">
-      <div>
-          <table cellspacing="0" cellpadding="0">
-              <tr>
-                  <td id="content"></td>
-              </tr>
-          </table>
-      </div>
+     <div id="content"></div>
   </div>
   <a id="info"></a>
 </body> 
