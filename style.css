@@ -3,7 +3,7 @@
     padding: 0;
 }
 
-html, body, #bg, #bg table, #bg td {
+html, body, #bg {
     height:100%;
     width:100%;
     overflow:hidden;
@@ -41,15 +41,4 @@ html, body, #bg, #bg table, #bg td {
 
 #info:hover {
     color:rgba(255,255,255,1);
-}
-
-#info #owner {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-}
-
-#info a {
-  color: #fff;
-  text-decoration: none;
 }
