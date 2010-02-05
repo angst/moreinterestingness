@@ -5,11 +5,14 @@
 <script>
  
 function show(photo) {
-  console.log(photo)
+  console.log(photo.buddyicon)
   document.getElementById('photo').setAttribute('src', photo.src);
-  var title = document.getElementById('title');
+  var title = document.getElementById('info');
   title.innerText = photo.title._content || 'untitled';
   title.setAttribute('href', photo.urls.url[0]._content);
+  document.getElementById('owner').setAttribute('href', 'http://www.flickr.com/photos/'+photo.owner.nsid+'/');;
+  document.getElementById('buddyicon').setAttribute('src', photo.buddyicon);
+  document.getElementById('buddyicon').setAttribute('title', photo.owner.realname);;
 }
 
 function init() {
@@ -31,12 +34,15 @@ window.onload = init;
  
 </script> 
 
+
 </head> 
 <body> 
   <div id="bg">
-     <div id="photo"></div>
+     <div><img id="photo" src="" alt="" /></div>
   </div>
-  <a id="title"></a>
+  <a id="info"></a>
+  <a id="owner"><img id="buddyicon"></a>
+  
 </body> 
 </html>
 

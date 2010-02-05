@@ -21,7 +21,7 @@ html, body, #bg {
     
 }
 
-#bg img {
+#bg img#photo {
     margin:0 auto;
     min-height:50%;
     min-width:50%;
@@ -41,4 +41,18 @@ html, body, #bg {
 
 #info:hover {
     color:rgba(255,255,255,1);
+}
+
+#owner {
+    opacity: 0.5;
+}
+
+#owner:hover {
+    opacity: 1;
+}
+#buddyicon {
+    bottom: 50px;
+    right: 0;
+    padding-right: 1em;
+    position: absolute;
 }
