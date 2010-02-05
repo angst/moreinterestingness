@@ -1,40 +1,28 @@
 <html>
 <head> 
+<link rel="stylesheet" href="style.css" type="text/css" />
 <title>Interestingness</title> 
 <link rel="stylesheet" href="style.css" type="text/css" />
 
 <script>
  
-var current_idx;
-
-function load(photo) {
-  var key = '08be316ee5aaa43c0fb40c3d496d4a3c';
-  var url = "http://api.flickr.com/services/rest/?format=json&nojsoncallback=1&method=flickr.photos.getInfo&api_key="+key+"&photo_id="+photo.id;
-  var req = new XMLHttpRequest();
-  req.open('GET', url, true);
-  req.onreadystatechange = function() {
-    if (req.readyState == 4) {
-      var res = JSON.parse(req.responseText)
-      console.log(res)
-      p = res.photo
-      var h = 'http://farm'+p.farm+'.static.flickr.com/'+p.server+'/'+p.id+'_'+p.secret+'_b.jpg';
-    	document.getElementById('content').innerHTML = "<img src='"+h+"'/>";
-    	var info = document.getElementById('info');
-    	info.innerText = p.title._content || 'untitled';
-    	info.setAttribute('href', p.urls.url[0]._content)
-    }
-  }
-  req.send();
+function show(photo) {
+  console.log(photo.buddyicon)
+  document.getElementById('photo').setAttribute('src', photo.src);
+  var title = document.getElementById('info');
+  title.innerText = photo.title._content || 'untitled';
+  title.setAttribute('href', photo.urls.url[0]._content);
+  document.getElementById('owner').setAttribute('href', 'http://www.flickr.com/photos/'+photo.owner.nsid+'/');;
+  document.getElementById('buddyicon').setAttribute('src', photo.buddyicon);
+  document.getElementById('buddyicon').setAttribute('title', photo.owner.realname);;
 }
 
 function init() {
-  var photos = chrome.extension.getBackgroundPage().photos;
-  current_idx = Math.floor(Math.random()*photos.length);
-  load(photos[current_idx]);
+  show(chrome.extension.getBackgroundPage().getNext());
+
   document.addEventListener('keypress', function(e) {
     if (e.keyCode==106) {
-      current_idx = (current_idx + 1) % photos.length;
-      load(photos[current_idx]);
+      show(chrome.extension.getBackgroundPage().getNext());
     }
     if (e.keyCode==107) {
       current_idx = (current_idx - 1 + photos.length) % photos.length;
@@ -47,12 +35,23 @@ window.onload = init;
  
  
 </script> 
+<<<<<<< HEAD
+=======
+
+>>>>>>> interestingness
 
 </head> 
 <body> 
   <div id="bg">
+<<<<<<< HEAD
      <div id="content"></div>
+=======
+     <div><img id="photo" src="" alt="" /></div>
+>>>>>>> interestingness
   </div>
   <a id="info"></a>
+  <a id="owner"><img id="buddyicon"></a>
+  
 </body> 
 </html>
+

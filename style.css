@@ -3,7 +3,8 @@
     padding: 0;
 }
 
-html, body, #bg, #bg table, #bg td {
+
+html, body, #bg {
     height:100%;
     width:100%;
     overflow:hidden;
@@ -21,7 +22,7 @@ html, body, #bg, #bg table, #bg td {
     
 }
 
-#bg img {
+#bg img#photo {
     margin:0 auto;
     min-height:50%;
     min-width:50%;
@@ -41,4 +42,18 @@ html, body, #bg, #bg table, #bg td {
 
 #info:hover {
     color:rgba(255,255,255,1);
+}
+
+#owner {
+    opacity: 0.5;
+}
+
+#owner:hover {
+    opacity: 1;
+}
+#buddyicon {
+    bottom: 50px;
+    right: 0;
+    padding-right: 1em;
+    position: absolute;
 }

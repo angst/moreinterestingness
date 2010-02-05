@@ -1,7 +1,7 @@
 {
-  "name": "chromr",
+  "name": "more interestingness",
   "version": "0.1",
-  "description": "Flickr Interestingness in the new tab",
+  "description": "Shows Flickr Interestingness in the new tab",
   "background_page": "service.html",
   "chrome_url_overrides": {
     "newtab": "newtab.html"
