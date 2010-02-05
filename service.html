@@ -30,8 +30,9 @@
     }, function(json) {
       photos = [];
       json.photos.photo.forEach(function(p) {
-        if (p.media == 'photo') {
+        if (p.media == 'photo' && Math.max(p.o_height, p.o_height) >= 1024) {
           photos.push(p)
+          console.log(photos);
         }
       }); 
       prime(0);
@@ -48,27 +49,15 @@
     }
 
     var ipJson = photos[idx];
-    console.log('ipJson', ipJson);
+    // console.log('ipJson', ipJson);
     flickr({
       method: 'flickr.photos.getInfo',
       photo_id: ipJson.id
     }, function(json) {
       if (json.photo.media == 'photo') {
         primed = json.photo;
-        // save the URL of the photo
-        console.log(primed)
-        // if (primed.originalformat) {
-        //   primed.src = 'http://farm'+primed.farm+'.static.flickr.com/'+primed.server+'/'+primed.id+'_'+primed.originalsecret+'_o.'+primed.originalformat;
-        // }
-        if (Math.max(ipJson.o_height, ipJson.o_height) >= 1024) {
-          // 1024 on longest side
-          primed.src = 'http://farm'+primed.farm+'.static.flickr.com/'+primed.server+'/'+primed.id+'_'+primed.secret+'_b.jpg';
-        }
-        else {
-          // 500 on longest side
-          primed.src = 'http://farm'+primed.farm+'.static.flickr.com/'+primed.server+'/'+primed.id+'_'+primed.secret+'.jpg';
-        }
-        
+
+        primed.src = 'http://farm'+primed.farm+'.static.flickr.com/'+primed.server+'/'+primed.id+'_'+primed.secret+'_b.jpg';
         primed.buddyicon = 'http://farm'+ipJson.iconfarm+'.static.flickr.com/'+ipJson.iconserver+'/buddyicons/'+ipJson.owner+'.jpg';
         
         // precache image

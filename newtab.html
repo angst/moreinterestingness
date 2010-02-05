@@ -23,8 +23,8 @@ function init() {
       show(chrome.extension.getBackgroundPage().getNext());
     }
     if (e.keyCode==107) {
-      // current_idx = (current_idx - 1 + photos.length) % photos.length;
-      // load(photos[current_idx]);
+      current_idx = (current_idx - 1 + photos.length) % photos.length;
+      load(photos[current_idx]);
     }
   }, true);
 };
