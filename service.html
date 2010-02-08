@@ -30,7 +30,7 @@
     }, function(json) {
       photos = [];
       json.photos.photo.forEach(function(p) {
-        if (p.media == 'photo' && Math.max(p.o_height, p.o_height) >= 1024) {
+        if (p.media == 'photo' && Math.max(p.o_width, p.o_height) > 1024) {
           photos.push(p)
           console.log(photos);
         }
