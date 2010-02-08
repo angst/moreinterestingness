@@ -32,10 +32,9 @@
       json.photos.photo.forEach(function(p) {
         if (p.media == 'photo' && Math.max(p.o_width) > 1080 && Math.max(p.o_height) > 1080) {
           photos.push(p)
-          
         }
       }); 
-      console.log(photos);
+      // console.log(photos);
       prime(0);
     });
   }
