@@ -4,7 +4,7 @@
   var key = '08be316ee5aaa43c0fb40c3d496d4a3c';
 
   function flickr(params, cb) {
-    var qs = ["format=json", "nojsoncallback=1", "api_key="+key];
+    var qs = ["format=json", "nojsoncallback=1", "per_page=300", "api_key="+key];
     for (var k in params) {
       qs.push(k + '=' + encodeURIComponent(params[k]));
     }
@@ -30,11 +30,12 @@
     }, function(json) {
       photos = [];
       json.photos.photo.forEach(function(p) {
-        if (p.media == 'photo' && Math.max(p.o_width, p.o_height) > 1024) {
+        if (p.media == 'photo' && Math.max(p.o_width) > 1080 && Math.max(p.o_height) > 1080) {
           photos.push(p)
-          console.log(photos);
+          
         }
       }); 
+      console.log(photos);
       prime(0);
     });
   }
