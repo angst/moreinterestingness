@@ -1,85 +1,30 @@
 <html>
-<script type="text/javascript">
-
-  var key = '08be316ee5aaa43c0fb40c3d496d4a3c';
-
-  function flickr(params, cb) {
-    var qs = ["format=json", "nojsoncallback=1", "per_page=300", "api_key="+key];
-    for (var k in params) {
-      qs.push(k + '=' + encodeURIComponent(params[k]));
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <script src="jquery-1.5.1.js" type="text/javascript" charset="utf-8"></script>
+  <script src="flickr.js" type="text/javascript" charset="utf-8"></script>
+</head>
+  <script type="text/javascript">
+    interestingness = new Flickr({key: "08be316ee5aaa43c0fb40c3d496d4a3c"})
+    interestingness.request();
+    interestingness.update();
+    setInterval(interestingness.update(), 60*60*1000);
+    
+    function getNext(){
+      return interestingness.next();
     }
-  
-    var url = "http://api.flickr.com/services/rest/?" + qs.join("&");
-
-    var req = new XMLHttpRequest();
-    req.open('GET', url, true);
-    req.onreadystatechange = function() {
-      if (req.readyState == 4) {
-        cb(JSON.parse(req.responseText));
-      }
+    
+    function getPrev(){
+      return interestingness.prev();
     }
-    req.send();    
-  }
-
-  var photos = [];
-  
-  function update() { 
-    flickr({
-      method: 'flickr.interestingness.getList',
-      extras: 'media,o_dims,owner_name,icon_server'
-    }, function(json) {
-      photos = [];
-      json.photos.photo.forEach(function(p) {
-        if (p.media == 'photo' && Math.max(p.o_width) > 1080 && Math.max(p.o_height) > 1080) {
-          photos.push(p)
-        }
-      }); 
-      // console.log(photos);
-      prime(0);
-    });
-  }
-
-
-  function prime(forceidx) {
-    if (forceidx) {
-      idx = forceidx
-    }
-    else {
-      idx = (idx + 1) % photos.length;
+    
+    function current(){
+      return interestingness.current_photo;
     }
 
-    var ipJson = photos[idx];
-    // console.log('ipJson', ipJson);
-    flickr({
-      method: 'flickr.photos.getInfo',
-      photo_id: ipJson.id
-    }, function(json) {
-      if (json.photo.media == 'photo') {
-        primed = json.photo;
+    function photo_list(){
+      return interestingness.photos;
+    }
 
-        primed.src = 'http://farm'+primed.farm+'.static.flickr.com/'+primed.server+'/'+primed.id+'_'+primed.secret+'_b.jpg';
-        primed.buddyicon = 'http://farm'+ipJson.iconfarm+'.static.flickr.com/'+ipJson.iconserver+'/buddyicons/'+ipJson.owner+'.jpg';
-        
-        // precache image
-        document.createElement('image').setAttribute('src', primed.src);
-        document.createElement('image').setAttribute('src', primed.buddyicon);
-      } 
-      else {
-        prime();
-      }
-    });
-  }
-  
-  var idx=0;
-  
-  function getNext() {
-    var next = primed;
-    prime();
-    return next;
-  }
-
-  setInterval(update, 60*60*1000); // update every hour
-  update();
-
-</script>
+  </script>
 </html>

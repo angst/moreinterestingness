@@ -1,5 +1,5 @@
 {
-  "name": "more interestingness",
+  "name": "Interestingness Tabbed",
   "version": "0.1",
   "description": "Shows Flickr Interestingness in the new tab",
   "background_page": "service.html",

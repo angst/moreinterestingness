@@ -1,48 +1,49 @@
-<html>
-<head> 
-<title>Interestingness</title> 
-<link rel="stylesheet" href="style.css" type="text/css" />
+<!DOCTYPE html>
+<html lang="en" xml:lang="en">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <title>Interestingness</title>
+        <script src="jquery-1.5.1.js" type="text/javascript" charset="utf-8"></script>
+        <script src="flickr.js" type="text/javascript" charset="utf-8"></script>
+        <link rel="stylesheet" href="style.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        
+        <script type="text/javascript" charset="utf-8">
 
-<script>
- 
-function show(photo) {
-  console.log(photo.buddyicon)
-  document.getElementById('photo').setAttribute('src', photo.src);
-  var title = document.getElementById('info');
-  title.innerText = photo.title._content || 'untitled';
-  title.setAttribute('href', photo.urls.url[0]._content);
-  document.getElementById('owner').setAttribute('href', 'http://www.flickr.com/photos/'+photo.owner.nsid+'/');;
-  document.getElementById('buddyicon').setAttribute('src', photo.buddyicon);
-  document.getElementById('buddyicon').setAttribute('title', photo.owner.realname);;
-}
+          function show(photo) {
+            console.log(photo.src);
+            $("#photo").attr("src", photo.src);
+            $("#info").text(photo.title || "untitled");
+            $("#info").attr("href", photo.url);
+            $("#owner").attr("href", photo.ownerurl);
+            $("#buddyicon").attr("src", photo.buddyicon);
+            $("#buddyicon").attr("title", photo.owner.realname);
+          }
+          
+          function init(){            
+            interestingness = chrome.extension.getBackgroundPage().interestingness;
 
-function init() {
-  show(chrome.extension.getBackgroundPage().getNext());
-
-  document.addEventListener('keypress', function(e) {
-    if (e.keyCode==106) {
-      show(chrome.extension.getBackgroundPage().getNext());
-    }
-    if (e.keyCode==107) {
-      current_idx = (current_idx - 1 + photos.length) % photos.length;
-      load(photos[current_idx]);
-    }
-  }, true);
-};
-
-window.onload = init;
- 
- 
-</script> 
-
-</head> 
-<body> 
-  <div id="bg">
-     <div><img id="photo" src="" alt="" /></div>
-  </div>
-  <a id="info"></a>
-  <a id="owner"><img id="buddyicon"></a>
-  
-</body> 
+            show(interestingness.next());
+            
+            console.log(interestingness.next());
+            document.addEventListener('keypress', function(e) {
+              if (e.keyCode==106) {
+                show(interestingness.next());
+              }
+              if (e.keyCode==107) {
+                show(interestingness.prev());
+              }
+            }, true);
+            
+          }
+          window.onload = init;
+        </script>
+        
+    </head>
+    <body> 
+      <div id="bg">
+         <div><img id="photo" src="" alt="" /></div>
+      </div>
+      <a id="info"></a>
+      <a id="owner"><img id="buddyicon"></a>
+    </body> 
 </html>
-
