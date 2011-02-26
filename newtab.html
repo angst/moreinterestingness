@@ -1,48 +1,59 @@
 <!DOCTYPE html>
 <html lang="en" xml:lang="en">
-    <head>
-        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-        <title>Interestingness</title>
-        <script src="jquery-1.5.1.js" type="text/javascript" charset="utf-8"></script>
-        <script src="flickr.js" type="text/javascript" charset="utf-8"></script>
-        <link rel="stylesheet" href="style.css" type="text/css" media="screen" title="no title" charset="utf-8">
-        
-        <script type="text/javascript" charset="utf-8">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>Interestingness</title>
+  <script src="jquery-1.5.1.js" type="text/javascript" charset="utf-8"></script>
+  <script src="flickr.js" type="text/javascript" charset="utf-8"></script>
+  <link rel="stylesheet" href="style.css" type="text/css" media="screen" title="no title" charset="utf-8">
 
-          function show(photo) {
-            console.log(photo.src);
-            $("#photo").attr("src", photo.src);
-            $("#info").text(photo.title || "untitled");
-            $("#info").attr("href", photo.url);
-            $("#owner").attr("href", photo.ownerurl);
-            $("#buddyicon").attr("src", photo.buddyicon);
-            $("#buddyicon").attr("title", photo.owner.realname);
-          }
-          
-          function init(){            
-            interestingness = chrome.extension.getBackgroundPage().interestingness;
+  <script type="text/javascript" charset="utf-8">
+    function show(photo) {
+      console.log(photo.src);
+      $("#photo").attr("src", photo.src);
+      $("#info").text(photo.title || "untitled");
+      $("#info").attr("href", photo.url);
+      $("#owner").attr("href", photo.ownerurl);
+      $("#buddyicon").attr("src", photo.buddyicon);
+      $("#buddyicon").attr("title", photo.owner.realname);
+    }
 
-            show(interestingness.next());
-            
-            document.addEventListener('keypress', function(e) {
-              if (e.keyCode==106) {
-                show(interestingness.next());
-              }
-              if (e.keyCode==107) {
-                show(interestingness.prev());
-              }
-            }, true);
-            
-          }
-          window.onload = init;
-        </script>
-        
-    </head>
-    <body> 
-      <div id="bg">
-         <div><img id="photo" src="" alt="" /></div>
-      </div>
-      <a id="info"></a>
-      <a id="owner"><img id="buddyicon"></a>
-    </body> 
+    function init(){            
+      interestingness = chrome.extension.getBackgroundPage().interestingness;
+
+      show(interestingness.next());
+
+      document.addEventListener('keypress', function(e) {
+        if (e.keyCode==106) {
+          show(interestingness.next());
+        }
+        if (e.keyCode==107) {
+          show(interestingness.prev());
+        }
+        }, true);
+
+      }
+      window.onload = init;
+    </script>
+
+  </head>
+  <body> 
+    <div id="bg">
+      <div><img id="photo" src="" alt="" /></div>
+    </div>
+    <a id="info"></a>
+    <a id="owner"><img id="buddyicon"></a>
+
+    <script type="text/javascript" charset="utf-8">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-11907887-11']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>     
 </html>
