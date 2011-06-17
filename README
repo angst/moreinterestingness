@@ -1,9 +1,0 @@
-Whenever you open a new tab a new interesting photo is displayed. This extension keeps an up-to-date list of the most recent photos on Flickr.com that are in the interestingness stream - http://www.flickr.com/explore/interesting  
-
-Clicking on the flickr user's icon will take you to that user's page, clicking on the title will take you to the photo on flickr.com
-
-You can navigate forward/backwards by clicking out of the address bar and typing j to go forward, or k to go backwards (standard vim up/down)
-
-__
-
-If you're a developer and find a bug, or have a feature to contribute - feel free to send a pull request: https://github.com/angst/moreinterestingness
