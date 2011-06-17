@@ -1,7 +1,7 @@
 {
-  "name": "Interestingness Tabbed",
-  "version": "0.1",
-  "description": "Shows Flickr Interestingness in the new tab",
+  "name": "More Interestingness",
+  "version": "1.0",
+  "description": "Explore the world through the lens of the Flickr Interestingness stream. New photo loads every time you open a new tab.",
   "background_page": "service.html",
   "chrome_url_overrides": {
     "newtab": "newtab.html"

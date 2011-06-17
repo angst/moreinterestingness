@@ -8,7 +8,7 @@ var Flickr = function(params, callback){
     extras: params.extras || "media,o_dims,owner_name,icon_server",
     photos: [],
     current_photo: 0,
-    
+
     queryString: function(){
       base_url = "http://api.flickr.com/services/rest/?";
       query = {
@@ -20,14 +20,12 @@ var Flickr = function(params, callback){
         extras: this.extras
       }
       query_string = []
-
       for (var k in query) {
         query_string.push(k + '=' + encodeURIComponent(query[k]));
       }
-      
       return base_url + query_string.join("&");
     },
-    
+
     request: function(){
       var photos = this.photos;
       var i = 0;
@@ -54,7 +52,7 @@ var Flickr = function(params, callback){
       photos = this.photos;
       return this.photos;
     },
-    
+
     next: function(){
       if (this.current_photo == this.photos.length-5) {
         next = this.photos[1];
@@ -65,7 +63,7 @@ var Flickr = function(params, callback){
       };
       return next;
     },
-    
+
     prev: function(){
       if (this.current_photo == 1) {
         prev = this.photos[this.photos.length-5];
@@ -76,22 +74,22 @@ var Flickr = function(params, callback){
       };
       return prev;
     },
-    
+
     fetch: function(id){
       return this.photos[id];
     },
-    
+
     update: function(){
       this.request();
       this.precache();
     },
-    
+
     precache: function(){
       photos = this.request();
       $(photos).each(function(){
         document.createElement('image').setAttribute('src', this.src);
         document.createElement('image').setAttribute('src', this.buddyicon);
-      })      
+      })
     }
   }
 }

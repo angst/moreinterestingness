@@ -6,10 +6,8 @@
   <script src="jquery-1.5.1.js" type="text/javascript" charset="utf-8"></script>
   <script src="flickr.js" type="text/javascript" charset="utf-8"></script>
   <link rel="stylesheet" href="style.css" type="text/css" media="screen" title="no title" charset="utf-8">
-
   <script type="text/javascript" charset="utf-8">
     function show(photo) {
-      console.log(photo.src);
       $("#photo").attr("src", photo.src);
       $("#info").text(photo.title || "untitled");
       $("#info").attr("href", photo.url);
@@ -17,12 +15,9 @@
       $("#buddyicon").attr("src", photo.buddyicon);
       $("#buddyicon").attr("title", photo.owner.realname);
     }
-
-    function init(){            
+    function init(){
       interestingness = chrome.extension.getBackgroundPage().interestingness;
-
       show(interestingness.next());
-
       document.addEventListener('keypress', function(e) {
         if (e.keyCode==106) {
           show(interestingness.next());
@@ -31,13 +26,11 @@
           show(interestingness.prev());
         }
         }, true);
-
       }
       window.onload = init;
     </script>
-
   </head>
-  <body> 
+  <body>
     <div id="bg">
       <div><img id="photo" src="" alt="" /></div>
     </div>
