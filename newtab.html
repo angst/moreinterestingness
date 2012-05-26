@@ -3,17 +3,22 @@
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <title>Interestingness</title>
-  <script src="jquery-1.5.1.js" type="text/javascript" charset="utf-8"></script>
+  <script src="jquery-1.7.1.js" type="text/javascript" charset="utf-8"></script>
   <script src="flickr.js" type="text/javascript" charset="utf-8"></script>
   <link rel="stylesheet" href="style.css" type="text/css" media="screen" title="no title" charset="utf-8">
   <script type="text/javascript" charset="utf-8">
     function show(photo) {
-      $("#photo").attr("src", photo.src);
-      $("#info").text(photo.title || "untitled");
-      $("#info").attr("href", photo.url);
-      $("#owner").attr("href", photo.ownerurl);
-      $("#buddyicon").attr("src", photo.buddyicon);
-      $("#buddyicon").attr("title", photo.owner.realname);
+      console.log('photo', photo)
+      if (photo){
+        $("#photo").attr("src", photo.src);
+        $("#info").text(photo.title || "untitled");
+        $("#info").attr("href", photo.url);
+        $("#owner").attr("href", photo.ownerurl);
+        $("#buddyicon").attr("src", photo.buddyicon);
+        $("#buddyicon").attr("title", photo.owner.realname);
+      } else {
+        console.log("theelse")
+      }
     }
     function init(){
       interestingness = chrome.extension.getBackgroundPage().interestingness;

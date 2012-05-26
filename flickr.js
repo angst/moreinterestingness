@@ -33,8 +33,7 @@ var Flickr = function(params, callback){
         url: this.queryString(), 
         async: false,
         success: function(response){
-          result = JSON.parse(response);
-          $(result.photos.photo).each(function(){
+          $(response.photos.photo).each(function(){
             if (this.o_width && this.media == "photo") {
               if (Math.max(this.o_width) > 1080 && Math.max(this.o_height) > 1080) {
                 this.buddyicon = 'http://farm'+this.iconfarm+'.static.flickr.com/'+this.iconserver+'/buddyicons/'+this.owner+'.jpg';
