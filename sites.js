@@ -14,7 +14,6 @@ var Sites = function(){
 
   inst.seed_hn = function() {
     console.log('updating hn');
-    //$(hn.items).each(function(){
     $.ajax({
       url: 'http://api.ihackernews.com/page?format=json',
       async: false,
