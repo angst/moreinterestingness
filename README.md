@@ -9,6 +9,17 @@ Clicking on the flickr user's icon will take you to that user's page, clicking o
 You can navigate forward/backwards by clicking out of the address bar and typing j to go forward, or k to go backwards (standard vim up/down)
 
 
+## Ideas
+
+ * look at time spent on page to show more hn/twitter/... comments on urls that
+   the user is interested in?
+ * instead of disappearing have a muted section at the bottom of recently
+   visited pages?
+ * include photos from instagram contacts
+ * include photos from facebook
+ * include urls mentioned by twitter contacts (use longurl.org to expand)
+ * background updates?
+
 ## Developers
 
 If you're a developer and find a bug, or have a feature to contribute - feel free to send a pull request: https://github.com/angst/moreinterestingness

@@ -1,13 +1,16 @@
 {
   "name": "More Interestingness",
-  "version": "1.2",
-  "description": "Explore the world through the lens of the Flickr Interestingness stream. New photo loads every time you open a new tab.",
+  "version": "0.1",
+  "description": "w000h, that is so cool!",
   "background_page": "service.html",
   "chrome_url_overrides": {
     "newtab": "newtab.html"
   },
   "permissions": [
     "tabs",
-    "http://api.flickr.com/"
+    "history",
+    "http://api.flickr.com/",
+    "http://api.ihackernews.com/",
+    "https://api.twitter.com/"
   ]
 }

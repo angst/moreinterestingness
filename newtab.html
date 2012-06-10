@@ -2,9 +2,8 @@
 <html lang="en" xml:lang="en">
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-  <title>Interestingness</title>
+  <title>More Interestingness</title>
   <script src="jquery-1.7.1.js" type="text/javascript" charset="utf-8"></script>
-  <script src="flickr.js" type="text/javascript" charset="utf-8"></script>
   <link rel="stylesheet" href="style.css" type="text/css" media="screen" title="no title" charset="utf-8">
   <script type="text/javascript" charset="utf-8">
     function show(photo) {
@@ -17,28 +16,48 @@
         $("#buddyicon").attr("src", photo.buddyicon);
         $("#buddyicon").attr("title", photo.owner.realname);
       } else {
-        console.log("theelse")
+        console.log("theelse");
       }
     }
-    function init(){
-      interestingness = chrome.extension.getBackgroundPage().interestingness;
+
+function add_sites(iterator, to_add) {
+    var url = iterator.getNext();
+    if (url) {
+        var p = sites.db[url];
+        var li = document.createElement('li');
+        $('#stories').append(li);
+        li.innerHTML = '<a href="' + p.url + '">' + p.title + '</a>';
+        to_add -= 1;
+        if (to_add > 0) {
+          add_sites(iterator, to_add);
+        }
+    }
+}
+
+function init() {
+  interestingness = chrome.extension.getBackgroundPage().interestingness;
+  sites = chrome.extension.getBackgroundPage().sites;
+  add_sites(sites.iterator(true), 10);
+  show(interestingness.next());
+  document.addEventListener('keypress', function(e) {
+    if (e.keyCode==106) {
       show(interestingness.next());
-      document.addEventListener('keypress', function(e) {
-        if (e.keyCode==106) {
-          show(interestingness.next());
-        }
-        if (e.keyCode==107) {
-          show(interestingness.prev());
-        }
-        }, true);
-      }
-      window.onload = init;
+    }
+    if (e.keyCode==107) {
+      show(interestingness.prev());
+    }
+  }, true);
+}
+
+window.onload = init;
     </script>
   </head>
   <body>
     <div id="bg">
       <div><img id="photo" src="" alt="" /></div>
     </div>
+    <ul id="stories">
+    </ul>
     <a id="info"></a>
     <a id="owner"><img id="buddyicon"></a>
 

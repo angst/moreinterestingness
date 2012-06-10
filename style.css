@@ -3,6 +3,26 @@
     padding: 0;
 }
 
+#stories {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+}
+
+#stories li {
+  list-style: none;
+  margin-bottom: 15px;
+}
+
+#stories a {
+  color: white;
+  padding: 5px;
+  background: rgba(0,0,0,0.5);
+  color: white;
+  font: 16px "Helvetica Neue", "Helvetica", Arial, sans-serif;
+  text-decoration: none;
+}
+
 
 html, body, #bg {
     height:100%;
