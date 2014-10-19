@@ -18,8 +18,8 @@ var Flickr = function(params, callback){
         per_page: this.per_page,
         method: this.method,
         extras: this.extras
-      }
-      query_string = []
+      };
+      query_string = [];
       for (var k in query) {
         query_string.push(k + '=' + encodeURIComponent(query[k]));
       }
@@ -30,7 +30,7 @@ var Flickr = function(params, callback){
       var photos = this.photos;
       var i = 0;
       $.ajax({
-        url: this.queryString(), 
+        url: this.queryString(),
         async: false,
         success: function(response){
           $(response.photos.photo).each(function(){
@@ -45,9 +45,9 @@ var Flickr = function(params, callback){
                 photos.push(this);
               }
             }
-          })
+          });
         }
-      })
+      });
       photos = this.photos;
       return this.photos;
     },
@@ -59,7 +59,7 @@ var Flickr = function(params, callback){
       } else {
         next = this.photos[this.current_photo++];
         this.current_photo = this.current_photo++;
-      };
+      }
       return next;
     },
 
@@ -70,7 +70,7 @@ var Flickr = function(params, callback){
       } else {
         prev = this.photos[this.current_photo--];
         this.current_photo = this.current_photo--;
-      };
+      }
       return prev;
     },
 
@@ -88,7 +88,7 @@ var Flickr = function(params, callback){
       $(photos).each(function(){
         document.createElement('image').setAttribute('src', this.src);
         document.createElement('image').setAttribute('src', this.buddyicon);
-      })
+      });
     }
-  }
-}
+  };
+};
