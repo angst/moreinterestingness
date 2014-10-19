@@ -10,7 +10,7 @@ var Flickr = function(params, callback){
     current_photo: 0,
 
     queryString: function(){
-      base_url = "http://api.flickr.com/services/rest/?";
+      base_url = "https://api.flickr.com/services/rest/?";
       query = {
         api_key: this.api_key,
         format: this.format,
@@ -36,10 +36,10 @@ var Flickr = function(params, callback){
           $(response.photos.photo).each(function(){
             if (this.o_width && this.media == "photo") {
               if (Math.max(this.o_width) > 1080 && Math.max(this.o_height) > 1080) {
-                this.buddyicon = 'http://farm'+this.iconfarm+'.static.flickr.com/'+this.iconserver+'/buddyicons/'+this.owner+'.jpg';
-                this.ownerurl = 'http://www.flickr.com/photos/'+this.owner+'/';
-                this.src = 'http://farm'+this.farm+'.static.flickr.com/'+this.server+'/'+this.id+'_'+this.secret+'_b.jpg';
-                this.url = 'http://www.flickr.com/photos/'+this.owner+'/'+this.id;
+                this.buddyicon = 'https://farm'+this.iconfarm+'.static.flickr.com/'+this.iconserver+'/buddyicons/'+this.owner+'.jpg';
+                this.ownerurl = 'https://www.flickr.com/photos/'+this.owner+'/';
+                this.src = 'https://farm'+this.farm+'.static.flickr.com/'+this.server+'/'+this.id+'_'+this.secret+'_b.jpg';
+                this.url = 'https://www.flickr.com/photos/'+this.owner+'/'+this.id;
                 this.ext_id = i;
                 i++;
                 photos.push(this);
